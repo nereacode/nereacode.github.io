@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <!-- 手机适配 -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Todo — NereaCode</title>
+
+    <!-- 网站公共 CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="home">
+
+
+        <!-- =========================
+             顶部导航
+             ========================= -->
+
+        <header class="top-bar">
+
+            <!-- Logo：点击回首页 -->
+
+            <a
+                href=" "
+                class="logo"
+            >
+                NereaCode
+            </a >
+
+
+            <!-- 返回首页 -->
+
+            <a
+                href="index.html"
+                class="back"
+            >
+                ← Back
+            </a >
+
+        </header>
+
+
+
+        <!-- =========================
+             Todo 主区域
+             ========================= -->
+
+        <section class="todo-page">
+
+
+            <p class="small-text">
+                TODO
+            </p >
+
+
+            <h1>
+                Things <br>
+                I need to do.
+            </h1>
+
+
+
+            <!-- =========================
+                 添加任务
+                 ========================= -->
+
+            <div class="todo-input-area">
+
+                <!--
+                    用户在这里输入任务
+                -->
+
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="What needs to be done?"
+                >
+
+
+                <!-- 点击这个按钮添加任务 -->
+
+                <button
+                    id="addTaskButton"
+                >
+                    Add
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 Todo 列表
+                 ========================= -->
+
+            <ul
+                id="taskList"
+                class="task-list"
+            >
+            </ul>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             Footer
+             ========================= -->
+
+        <footer>
+
+            <p>
+                NereaCode · 2026
+            </p >
+
+        </footer>
+
+
+    </main>
+
+
+    <!--
+        Todo 页面使用 JavaScript
+
+        注意：
+        现在 app.js 里只有首页时钟代码，
+        下一步我们会把 Todo 功能也放进去。
+    -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

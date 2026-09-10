@@ -1,46 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Nerea Code</title>
-    <link rel="stylesheet" href="style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NereaCode — Digital World</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
+
 <body>
-<main class="container">
-
-    <header class="header">
-
-        <h1>NereaCode</h1>
-
-        <p>My Todo List</p >
-
-    </header>
 
 
-    <section class="add-task">
+    <!-- =================================
+         顶部 Hero 图片区域
+         ================================= -->
 
-        <input
-            type="text"
-            id="taskInput"
-            placeholder="What do you need to do?"
+    <section class="hero">
+
+
+        <!-- Busan 图片 -->
+
+        <img
+            src="busan.jpg"
+            alt="Busan"
+            class="hero-image"
         >
 
-        <button id="addTaskButton">
-            Add
-        </button>
+
+        <!-- 图片上的黑色渐变
+             让文字更容易看清 -->
+
+        <div class="hero-overlay"></div>
+
+
+        <!-- 图片上的导航 -->
+
+<header class="top-bar">
+
+    <div class="logo">
+        NereaCode
+    </div>
+
+    <div class="top-right">
+
+        <div class="date">
+            09/11/2026
+        </div>
+
+        <div
+            class="time"
+            id="time"
+        >
+            00:00
+        </div>
+
+    </div>
+
+</header>
+
+
+<div class="hero-content">
+
+    <p class="small-text">
+        WELCOME TO
+    </p >
+
+    <h1>
+        NEREA
+    </h1>
+
+    <p class="description">
+        My Digital World.
+    </p >
+
+</div>
 
     </section>
 
 
-    <section>
 
-        <ul id="taskList"></ul>
+    <!-- =================================
+         黑色内容区域
+         ================================= -->
 
-    </section>
+    <main class="content">
 
-</main>
 
-<script src="app.js"></script>
+        <!-- =================================
+             六个数字房间
+             ================================= -->
+
+        <section class="world">
+
+
+            <!-- 01 Projects -->
+
+            <a
+                href="projects.html"
+                class="world-card"
+            >
+
+                <span class="card-number">
+                    01
+                </span>
+
+                <h2>
+                    Projects
+                </h2>
+
+                <p>
+                    Things I'm building.
+                </p >
+
+            </a >
+
+
+            <!-- 02 Journal -->
+
+            <a
+                href="journal.html"
+                class="world-card"
+            >
+
+                <span class="card-number">
+                    02
+                </span>
+
+                <h2>
+                    Journal
+                </h2>
+
+                <p>
+                    Thoughts & moments.
+                </p >
+
+            </a >
+
+
+            <!-- 03 Travel -->
+
+            <a
+                href="travel.html"
+                class="world-card"
+            >
+
+                <span class="card-number">
+                    03
+                </span>
+
+                <h2>
+                    Travel
+                </h2>
+
+                <p>
+                    Places I've been.
+                </p >
+
+            </a >
+
+
+            <!-- 04 Todo -->
+
+            <a
+                href="todo.html"
+                class="world-card"
+            >
+
+                <span class="card-number">
+                    04
+                </span>
+
+                <h2>
+                    Todo
+                </h2>
+
+                <p>
+                    Things I need to do.
+                </p >
+
+            </a >
+
+
+            <!-- 05 Learning -->
+
+            <a
+                href="learning.html"
+                class="world-card"
+            >
+
+                <span class="card-number">
+                    05
+                </span>
+
+                <h2>
+                    Learning
+                </h2>
+
+                <p>
+                    What I'm learning.
+                </p >
+
+            </a >
+
+
+            <!-- 06 About -->
+
+            <a
+                href="about.html"
+                class="world-card"
+            >
+
+                <span class="card-number">
+                    06
+                </span>
+
+                <h2>
+                    About
+                </h2>
+
+                <p>
+                    A little about me.
+                </p >
+
+            </a >
+
+
+        </section>
+
+
+
+        <!-- =================================
+             Footer
+             ================================= -->
+
+        <footer>
+
+            <p>
+                Built by Nerea · 2026
+            </p >
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- JavaScript -->
+
+    <script src="app.js"></script>
+
 </body>
+
 </html>

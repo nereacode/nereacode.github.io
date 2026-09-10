@@ -1,0 +1,847 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #111;
+    color: #fff;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    min-height: 520px;
+}
+
+.hero-image {
+    display: block;
+    width: 100%;
+    min-height: 520px;
+    object-fit: cover;
+    margin: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.02),
+        rgba(0, 0, 0, 0.20)
+    );
+    pointer-events: none;
+}
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px 5%;
+    z-index: 2;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #054cff;
+}
+
+.top-right {
+    text-align: right;
+}
+
+.date {
+    font-size: 20px;
+    font-weight: bold;
+    color: #054cff;
+    margin-bottom: 4px;
+}
+
+.time {
+    font-size: 20px;
+    font-weight: bold;
+    color: #054cff;
+}
+
+.hero-content {
+    position: absolute;
+    right: 5%;
+    bottom: 65px;
+    z-index: 2;
+    color: #66c7ff;
+    width: max-content;
+    text-align: left;
+}
+
+.hero-content .small-text {
+    font-size: 17px;
+    letter-spacing: 4px;
+    color: #66c7ff;
+    margin: 0 0 20px;
+}
+
+.hero h1 {
+    font-size: clamp(56px, 12vw, 150px);
+    line-height: 0.9;
+    margin: 0;
+    letter-spacing: -6px;
+    color: #66c7ff;
+}
+
+.hero-content .description {
+    font-size: 17px;
+    letter-spacing: 4px;
+    color: #66c7ff;
+    margin: 30px 0 0;
+}
+
+.content {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.world {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 80px 0;
+}
+
+.world-card {
+    min-height: 220px;
+    border: 1px solid #333;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.world-card:hover {
+    transform: translateY(-6px);
+    background: #1b1b1b;
+    border-color: #666;
+}
+
+.card-number {
+    font-size: 12px;
+    color: #666;
+}
+
+.world-card h2 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.world-card p {
+    color: #888;
+    margin: 0;
+}
+
+footer {
+    padding: 30px 0;
+    border-top: 1px solid #222;
+    color: #666;
+    font-size: 13px;
+}
+
+.back {
+    color: #777;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.back:hover {
+    color: #fff;
+}
+
+.about-page {
+    padding: 80px 0;
+}
+
+.about-page h1 {
+    font-size: clamp(70px, 15vw, 160px);
+    line-height: 0.9;
+    letter-spacing: -6px;
+    margin: 0 0 30px;
+}
+
+.about-intro {
+    max-width: 550px;
+    font-size: 22px;
+    line-height: 1.6;
+    color: #888;
+    margin-bottom: 100px;
+}
+
+.timeline {
+    max-width: 800px;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-top: 1px solid #333;
+}
+
+.timeline-year {
+    color: #777;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.timeline-content h2 {
+    margin: 0 0 15px;
+    font-size: 28px;
+}
+
+.timeline-content p {
+    margin: 0;
+    max-width: 500px;
+    color: #888;
+    line-height: 1.7;
+}
+
+.timeline-item.future {
+    opacity: 0.5;
+}
+
+.projects-page {
+    padding: 80px 0;
+}
+
+.projects-page h1 {
+    font-size: clamp(45px, 7vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    margin: 0 0 100px;
+}
+
+.project-list {
+    border-top: 1px solid #333;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px;
+    gap: 30px;
+    padding: 40px 0;
+    border-bottom: 1px solid #333;
+    transition:
+        background 0.2s ease,
+        padding 0.2s ease;
+}
+
+.project-card:hover {
+    background: #181818;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.project-number {
+    color: #666;
+    font-size: 13px;
+}
+
+.project-info h2 {
+    margin: 0 0 15px;
+    font-size: 32px;
+}
+
+.project-info p {
+    max-width: 550px;
+    margin: 0 0 20px;
+    color: #888;
+    line-height: 1.6;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.project-tags span {
+    border: 1px solid #333;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: #777;
+}
+
+.project-status {
+    color: #666;
+    font-size: 18px;
+    text-align: right;
+}
+
+.journal-page {
+    padding: 80px 0;
+}
+
+.journal-page h1 {
+    font-size: clamp(45px, 7vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    margin: 0 0 100px;
+}
+
+.journal-list {
+    max-width: 900px;
+    border-top: 1px solid #333;
+}
+
+.journal-entry {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 40px;
+    padding: 45px 0;
+    border-bottom: 1px solid #333;
+    transition:
+        background 0.2s ease,
+        padding 0.2s ease;
+}
+
+.journal-entry:hover {
+    background: #181818;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.journal-date {
+    color: #666;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.journal-content h2 {
+    margin: 0 0 15px;
+    font-size: 30px;
+}
+
+.journal-content p {
+    max-width: 600px;
+    margin: 0;
+    color: #888;
+    line-height: 1.7;
+}
+
+.journal-entry.future {
+    opacity: 0.45;
+}
+
+.travel-page {
+    padding: 80px 0;
+}
+
+.travel-page h1 {
+    font-size: clamp(45px, 7vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    margin: 0 0 80px;
+}
+
+.travel-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 700px;
+    margin-bottom: 100px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.travel-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 25px 0;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.stat-label {
+    color: #777;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.travel-list {
+    max-width: 1000px;
+    border-top: 1px solid #333;
+}
+
+.travel-entry {
+    display: grid;
+    grid-template-columns: 80px 1fr 180px;
+    gap: 30px;
+    padding: 50px 0;
+    border-bottom: 1px solid #333;
+    transition:
+        background 0.2s ease,
+        padding 0.2s ease;
+}
+
+.travel-entry:hover {
+    background: #181818;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.travel-number {
+    color: #666;
+    font-size: 13px;
+}
+
+.travel-country {
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin: 0 0 15px;
+}
+
+.travel-info h2 {
+    font-size: 36px;
+    margin: 0 0 15px;
+}
+
+.travel-info > p:last-child {
+    max-width: 550px;
+    margin: 0;
+    color: #888;
+    line-height: 1.7;
+}
+
+.travel-cities {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.8;
+    text-align: right;
+}
+
+.travel-entry.future {
+    opacity: 0.45;
+}
+
+.learning-page {
+    padding: 80px 0;
+}
+
+.learning-page h1 {
+    font-size: clamp(45px, 7vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    margin: 0 0 100px;
+}
+
+.learning-intro {
+    max-width: 650px;
+    margin-bottom: 100px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #333;
+}
+
+.learning-label {
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin: 0 0 20px;
+}
+
+.learning-intro h2 {
+    font-size: 42px;
+    margin: 0 0 20px;
+}
+
+.learning-intro > p:last-child {
+    max-width: 600px;
+    color: #888;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.learning-list {
+    max-width: 900px;
+    border-top: 1px solid #333;
+}
+
+.learning-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 30px;
+    padding: 40px 0;
+    border-bottom: 1px solid #333;
+    transition:
+        background 0.2s ease,
+        padding 0.2s ease;
+}
+
+.learning-item:hover {
+    background: #181818;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.learning-number {
+    color: #666;
+    font-size: 13px;
+}
+
+.learning-status {
+    color: #666;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.learning-content h2 {
+    font-size: 30px;
+    margin: 10px 0 15px;
+}
+
+.learning-content p {
+    max-width: 600px;
+    margin: 0;
+    color: #888;
+    line-height: 1.7;
+}
+
+.learning-item.future {
+    opacity: 0.45;
+}
+
+.todo-page {
+    padding: 80px 0;
+}
+
+.todo-page h1 {
+    font-size: clamp(45px, 7vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    margin: 0 0 80px;
+}
+
+.todo-input-area {
+    display: flex;
+    gap: 10px;
+    max-width: 700px;
+    margin-bottom: 60px;
+}
+
+#taskInput {
+    flex: 1;
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid #333;
+    background: #111;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+}
+
+#taskInput:focus {
+    border-color: #666;
+}
+
+#addTaskButton {
+    padding: 0 30px;
+    border: 1px solid #333;
+    background: #181818;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#addTaskButton:hover {
+    background: #222;
+    border-color: #666;
+}
+
+.task-list {
+    max-width: 900px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid #333;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 25px 0;
+    border-bottom: 1px solid #333;
+    transition:
+        background 0.2s ease,
+        padding 0.2s ease;
+}
+
+.task:hover {
+    background: #181818;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+}
+
+.complete-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.task-content span {
+    word-break: break-word;
+    line-height: 1.5;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.edit-button,
+.delete-button {
+    border: 1px solid #333;
+    background: transparent;
+    color: #777;
+    padding: 7px 12px;
+    cursor: pointer;
+    font-size: 11px;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+    color: #fff;
+    border-color: #666;
+}
+
+@media (max-width: 700px) {
+
+    .hero {
+        min-height: 430px;
+    }
+
+    .hero-image {
+        min-height: 430px;
+    }
+
+    .top-bar {
+        padding: 20px 5%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .date {
+        font-size: 11px;
+    }
+
+    .time {
+        font-size: 17px;
+    }
+
+    .hero-content {
+        right: 5%;
+        bottom: 40px;
+    }
+
+    .hero-content .small-text {
+        font-size: 14px;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+    }
+
+    .hero h1 {
+        font-size: clamp(50px, 16vw, 90px);
+        letter-spacing: -4px;
+    }
+
+    .hero-content .description {
+        font-size: 14px;
+        letter-spacing: 3px;
+        margin-top: 20px;
+    }
+
+    .world {
+        grid-template-columns: 1fr;
+        padding: 50px 0;
+    }
+
+    .world-card {
+        min-height: 180px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .about-page {
+        padding: 50px 0;
+    }
+
+    .about-page h1 {
+        letter-spacing: -4px;
+    }
+
+    .about-intro {
+        font-size: 18px;
+        margin-bottom: 60px;
+    }
+
+    .projects-page {
+        padding: 50px 0;
+    }
+
+    .projects-page h1 {
+        letter-spacing: -3px;
+        margin-bottom: 60px;
+    }
+
+    .project-card {
+        grid-template-columns: 40px 1fr;
+        gap: 15px;
+    }
+
+    .project-status {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .journal-page {
+        padding: 50px 0;
+    }
+
+    .journal-page h1 {
+        letter-spacing: -3px;
+        margin-bottom: 60px;
+    }
+
+    .journal-entry {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .travel-page {
+        padding: 50px 0;
+    }
+
+    .travel-page h1 {
+        letter-spacing: -3px;
+        margin-bottom: 60px;
+    }
+
+    .travel-stats {
+        margin-bottom: 60px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .travel-entry {
+        grid-template-columns: 40px 1fr;
+        gap: 15px;
+    }
+
+    .travel-cities {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .learning-page {
+        padding: 50px 0;
+    }
+
+    .learning-page h1 {
+        letter-spacing: -3px;
+        margin-bottom: 60px;
+    }
+
+    .learning-intro {
+        margin-bottom: 60px;
+    }
+
+    .learning-intro h2 {
+        font-size: 32px;
+    }
+
+    .learning-item {
+        grid-template-columns: 40px 1fr;
+        gap: 15px;
+    }
+
+    .todo-page {
+        padding: 50px 0;
+    }
+
+    .todo-page h1 {
+        letter-spacing: -3px;
+        margin-bottom: 50px;
+    }
+
+    .todo-input-area {
+        gap: 6px;
+    }
+
+    #taskInput {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    #addTaskButton {
+        padding: 0 18px;
+    }
+
+    .task {
+        align-items: flex-start;
+    }
+
+    .task-actions {
+        flex-direction: column;
+    }
+}
