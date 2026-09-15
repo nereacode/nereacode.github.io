@@ -2,311 +2,105 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <!-- 手机适配 -->
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning — NereaCode</title>
-
-    <!-- 使用网站公共 CSS -->
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-    <main class="home">
+    <div class="clouds" aria-hidden="true"><span></span><span></span><span></span></div>
 
+    <div class="shell">
+        <main class="page">
 
-        <!-- =========================
-             顶部导航
-             ========================= -->
+            <header class="top-bar solid">
+                <a href="index.html" class="logo"><span class="leaf"></span>NereaCode</a>
+                <a href="index.html" class="back">← Back home</a>
+            </header>
 
-        <header class="top-bar">
-
-            <!-- 点击 Logo 回到首页 -->
-
-            <a
-                href=" "
-                class="logo"
-            >
-                NereaCode
-            </a >
-
-
-            <!-- 返回首页 -->
-
-            <a
-                href="index.html"
-                class="back"
-            >
-                ← Back
-            </a >
-
-        </header>
-
-
-
-        <!-- =========================
-             Learning 主区域
-             ========================= -->
-
-        <section class="learning-page">
-
-
-            <p class="small-text">
-                LEARNING
-            </p >
-
-
-            <h1>
-                Still<br>
-                learning...
-            </h1>
-
-
-            <!-- =========================
-                 当前学习状态
-                 ========================= -->
-
-            <section class="learning-intro">
-
-                <p class="learning-label">
-                    CURRENTLY
-                </p >
-
-                <h2>
-                    Front-end and back-end ~
-                </h2>
-
-                <p>
-                    Coming soon
-                </p >
-
+            <section class="page-head">
+                <p class="small-text">LEARNING</p>
+                <h1>Still learning,<br>still sprouting.</h1>
+                <svg class="squiggle" width="180" height="14" viewBox="0 0 180 14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M3 9c14-6 22 6 36 0s22 6 36 0 22 6 36 0 22 6 36 0"/></svg>
+                <p class="head-note">Slow is smooth, smooth is fast. Here is the little garden I'm watering this year.</p>
             </section>
 
-
-
-            <!-- =========================
-                 学习路线
-                 ========================= -->
+            <section class="learning-intro reveal">
+                <div class="paper-card">
+                    <p class="learning-label">CURRENTLY</p>
+                    <h2>Front-end &amp; back-end, together</h2>
+                    <p>I'm teaching myself the whole loop of a website: how it looks, how it thinks, and how it remembers. This site is my practice notebook — every page here is something I learned this month.</p>
+                </div>
+                <div class="paper-card" style="text-align:center">
+                    <p class="learning-label">THIS WEEK</p>
+                    <h2 style="font-size:24px">CSS grids &amp; localStorage</h2>
+                    <p>Today's small win: the Todo page remembers my list after I close the browser. Magic? No — <code>localStorage</code>. ✨</p>
+                </div>
+            </section>
 
             <div class="learning-list">
 
-
-                <!-- 01 -->
-
-                <article class="learning-item">
-
-                    <div class="learning-number">
-                        01
-                    </div>
-
-
+                <article class="learning-item reveal">
+                    <div class="learning-number">01</div>
                     <div class="learning-content">
-
-                        <span class="learning-status">
-                            LEARNING
-                        </span>
-
-                        <h2>
-                            HTML & CSS
-                        </h2>
-
-                        <p>
-                            Learning how websites are
-                            structured and designed.
-                        </p >
-
+                        <span class="learning-status">LEARNING</span>
+                        <h2>HTML &amp; CSS</h2>
+                        <p>How a page is structured, and how to make it feel like paper and sky instead of a spreadsheet.</p>
+                        <div class="meter"><i style="width:72%"></i></div>
+                        <p class="meter-label">about 72% — layouts feel friendly now</p>
                     </div>
-
                 </article>
 
-
-
-                <!-- 02 -->
-
-                <article class="learning-item">
-
-                    <div class="learning-number">
-                        02
-                    </div>
-
-
+                <article class="learning-item reveal">
+                    <div class="learning-number">02</div>
                     <div class="learning-content">
-
-                        <span class="learning-status">
-                            LEARNING
-                        </span>
-
-                        <h2>
-                            JavaScript
-                        </h2>
-
-                        <p>
-                            Learning programming logic,
-                            interaction and browser APIs.
-                        </p >
-
+                        <span class="learning-status">LEARNING</span>
+                        <h2>JavaScript</h2>
+                        <p>Programming logic, interaction and browser APIs — clocks, todo lists and photo lightboxes, built by hand.</p>
+                        <div class="meter"><i style="width:48%"></i></div>
+                        <p class="meter-label">about 48% — functions are becoming friends</p>
                     </div>
-
                 </article>
 
-
-
-                <!-- 03 -->
-
-                <article class="learning-item">
-
-                    <div class="learning-number">
-                        03
-                    </div>
-
-
+                <article class="learning-item reveal">
+                    <div class="learning-number">03</div>
                     <div class="learning-content">
-
-                        <span class="learning-status">
-                            NEXT
-                        </span>
-
-                        <h2>
-                            Git & GitHub
-                        </h2>
-
-                        <p>
-                            Learning how developers manage
-                            and collaborate on code.
-                        </p >
-
+                        <span class="learning-status">NEXT</span>
+                        <h2>Git &amp; GitHub</h2>
+                        <p>How developers keep history, branches and courage — so this site can grow without fear of breaking.</p>
+                        <div class="meter"><i style="width:15%"></i></div>
+                        <p class="meter-label">about 15% — I can commit, barely</p>
                     </div>
-
                 </article>
 
-
-
-                <!-- 04 -->
-
-                <article class="learning-item future">
-
-                    <div class="learning-number">
-                        04
-                    </div>
-
-
+                <article class="learning-item future reveal">
+                    <div class="learning-number">04</div>
                     <div class="learning-content">
-
-                        <span class="learning-status">
-                            FUTURE
-                        </span>
-
-                        <h2>
-                            Python
-                        </h2>
-
-                        <p>
-                            A new programming language
-                            and another way of thinking.
-                        </p >
-
+                        <span class="learning-status">FUTURE</span>
+                        <h2>Python</h2>
+                        <p>A new language and another way of thinking — maybe one day it will sort my 700 travel photos for me.</p>
                     </div>
-
                 </article>
 
-
-
-                <!-- 05 -->
-
-                <article class="learning-item future">
-
-                    <div class="learning-number">
-                        05
-                    </div>
-
-
+                <article class="learning-item future reveal">
+                    <div class="learning-number">05</div>
                     <div class="learning-content">
-
-                        <span class="learning-status">
-                            FUTURE
-                        </span>
-
-                        <h2>
-                            Computer Science
-                        </h2>
-
-                        <p>
-                            Algorithms, data structures,
-                            software engineering and more.
-                        </p >
-
+                        <span class="learning-status">FUTURE</span>
+                        <h2>Watercolour &amp; illustration</h2>
+                        <p>Not code, but still learning: Ghibli skies, soft clouds, and painting the places I've been from memory.</p>
                     </div>
-
                 </article>
-
-
-
-                <!-- 06 -->
-
-                <article class="learning-item future">
-
-                    <div class="learning-number">
-                        06
-                    </div>
-
-
-                    <div class="learning-content">
-
-                        <span class="learning-status">
-                            FUTURE
-                        </span>
-
-                        <h2>
-                            Software Development
-                        </h2>
-
-                        <p>
-                            Turning everything I've learned
-                            into real applications.
-                        </p >
-
-                    </div>
-
-                </article>
-
 
             </div>
 
-        </section>
+            <footer><p>learning · nereacode · 2026</p></footer>
 
+        </main>
+    </div>
 
-
-        <!-- =========================
-             Footer
-             ========================= -->
-
-        <footer>
-
-            <p>
-                NereaCode · 2026
-            </p >
-
-        </footer>
-
-
-    </main>
-
-
-    <!-- 公共 JavaScript -->
     <script src="app.js"></script>
 
 </body>
-
 </html>

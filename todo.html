@@ -2,149 +2,61 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <!-- 手机适配 -->
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo — NereaCode</title>
-
-    <!-- 网站公共 CSS -->
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-    <main class="home">
+    <div class="clouds" aria-hidden="true"><span></span><span></span><span></span></div>
 
+    <div class="shell">
+        <main class="page">
 
-        <!-- =========================
-             顶部导航
-             ========================= -->
+            <header class="top-bar solid">
+                <a href="index.html" class="logo"><span class="leaf"></span>NereaCode</a>
+                <a href="index.html" class="back">← Back home</a>
+            </header>
 
-        <header class="top-bar">
+            <section class="page-head">
+                <p class="small-text">TODO</p>
+                <h1>Sticky notes for<br>the days ahead.</h1>
+                <svg class="squiggle" width="180" height="14" viewBox="0 0 180 14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M3 9c14-6 22 6 36 0s22 6 36 0 22 6 36 0 22 6 36 0"/></svg>
+                <p class="head-note">Everything lives in this browser only — my private fridge-door of little promises.</p>
+            </section>
 
-            <!-- Logo：点击回首页 -->
+            <div class="todo-wrap">
 
-            <a
-                href=" "
-                class="logo"
-            >
-                NereaCode
-            </a >
+                <aside class="paper-card reveal" style="transform: rotate(-1deg)">
+                    <p class="learning-label">HOW I USE THIS</p>
+                    <h2 style="font-family: var(--serif); font-size: 24px; margin: 0 0 10px">One note at a time</h2>
+                    <p style="color: var(--ink-soft); margin: 0 0 14px">Type a task, press Enter, and it sticks to the board as a little note. Tick it when it's done — the wavy line is my way of saying goodbye.</p>
+                    <p style="font-family: var(--hand); font-size: 18px; color: var(--sakura-deep); margin: 0">“Small steps every day 🌱”</p>
+                </aside>
 
+                <section class="todo-page reveal">
 
-            <!-- 返回首页 -->
+                    <div class="todo-input-area">
+                        <input type="text" id="taskInput" placeholder="What needs to be done?">
+                        <button id="addTaskButton">Add</button>
+                    </div>
 
-            <a
-                href="index.html"
-                class="back"
-            >
-                ← Back
-            </a >
+                    <ul id="taskList" class="task-list"></ul>
 
-        </header>
+                    <p class="todo-empty" style="display:none">the board is empty — go enjoy the sunshine ☀</p>
 
-
-
-        <!-- =========================
-             Todo 主区域
-             ========================= -->
-
-        <section class="todo-page">
-
-
-            <p class="small-text">
-                TODO
-            </p >
-
-
-            <h1>
-                Things <br>
-                I need to do.
-            </h1>
-
-
-
-            <!-- =========================
-                 添加任务
-                 ========================= -->
-
-            <div class="todo-input-area">
-
-                <!--
-                    用户在这里输入任务
-                -->
-
-                <input
-                    type="text"
-                    id="taskInput"
-                    placeholder="What needs to be done?"
-                >
-
-
-                <!-- 点击这个按钮添加任务 -->
-
-                <button
-                    id="addTaskButton"
-                >
-                    Add
-                </button>
+                </section>
 
             </div>
 
+            <footer><p>todo · nereacode · 2026</p></footer>
 
-
-            <!-- =========================
-                 Todo 列表
-                 ========================= -->
-
-            <ul
-                id="taskList"
-                class="task-list"
-            >
-            </ul>
-
-
-        </section>
-
-
-
-        <!-- =========================
-             Footer
-             ========================= -->
-
-        <footer>
-
-            <p>
-                NereaCode · 2026
-            </p >
-
-        </footer>
-
-
-    </main>
-
-
-    <!--
-        Todo 页面使用 JavaScript
-
-        注意：
-        现在 app.js 里只有首页时钟代码，
-        下一步我们会把 Todo 功能也放进去。
-    -->
+        </main>
+    </div>
 
     <script src="app.js"></script>
 
 </body>
-
 </html>
