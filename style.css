@@ -3,6 +3,8 @@
    A soft, hand-made journal look: cream paper, matcha green,
    sky blue, sakura pink. Inspired by Ghibli skies and 手帐.
    ========================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+IT+Trad:wght@100..400&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
 
 * { box-sizing: border-box; }
 
@@ -107,8 +109,9 @@ img { max-width: 100%; display: block; }
     border-bottom: 1px dashed var(--line);
 }
 .logo {
-    font-family: var(--serif);
-    font-size: 22px;
+    font-family: Caveat;
+    line-height: 2;
+    font-size: 30px;
     font-weight: 700;
     letter-spacing: .5px;
     color: #fff;
@@ -125,18 +128,20 @@ img { max-width: 100%; display: block; }
     transform: rotate(-8deg);
     box-shadow: inset -2px -2px 0 rgba(255,255,255,.35);
 }
-.top-right { text-align: right; color: #fff; text-shadow: 0 1px 8px rgba(30,40,50,.55); }
+.top-right { text-align: right; color: #2b70df; text-shadow: 0 1px 8px rgba(30,40,50,.55); }
 .top-bar.solid .top-right { color: var(--ink-soft); text-shadow: none; }
-.date { font-size: 14px; letter-spacing: 2px; }
-.time { font-family: var(--hand); font-size: 22px; line-height: 1.1; }
+.date { font-family: 'Caveat'; font-size: 22px; line-height: 1.2; }
+.time { font-family: 'Caveat';  font-size: 22px; line-height: 1.2; }
 .back {
-    font-size: 14px;
+    font-family: var(--hand);
+    font-size: 18px;
     color: var(--ink-soft);
     border: 1px dashed var(--line);
     background: rgba(255,255,255,.6);
     padding: 7px 14px;
     border-radius: 100px;
     transition: all .2s ease;
+
 }
 .back:hover { background: #fff; color: var(--matcha-deep); transform: translateX(-3px); }
 
@@ -171,22 +176,23 @@ img { max-width: 100%; display: block; }
 }
 .hero-content {
     position: absolute;
-    right: 6%;
-    bottom: 70px;
+    right: 4%;
+    bottom: 190px;
     z-index: 2;
     text-align: left;
     color: #fff;
 }
 .hero-content .small-text {
-    font-size: 14px;
-    letter-spacing: 6px;
-    margin: 0 0 10px;
-    color: rgba(255,255,255,.9);
-    text-shadow: 0 1px 10px rgba(20,30,40,.6);
+    font-family: var(--hand);
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin: 14px 0 0;
+    color: #fff;
+    text-shadow: 0 1px 12px rgba(20,30,40,.6);
 }
 .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(64px, 12vw, 150px);
+    font-size: clamp(56px, 10vw, 130px);;
     line-height: .92;
     margin: 0;
     letter-spacing: -3px;
@@ -202,6 +208,7 @@ img { max-width: 100%; display: block; }
     text-shadow: 0 1px 12px rgba(20,30,40,.6);
 }
 .hero-scroll {
+        font-family: var(--hand);
     position: absolute;
     left: 50%;
     bottom: 18px;
@@ -257,7 +264,7 @@ h1 {
     color: var(--ink);
 }
 .head-note {
-    font-family: var(--hand);
+
     font-size: 20px;
     color: var(--ink-soft);
     max-width: 620px;
