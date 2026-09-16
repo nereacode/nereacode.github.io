@@ -22,7 +22,8 @@
              ============================ -->
         <section class="hero">
 
-            <img src="https://cdn.osyb.cn/gh/nereacode/nereacode.github.io/busan.jpg" alt="Busan seaside at dusk" class="hero-image">
+            <img src="https://cdn.osyb.cn/gh/nereacode/nereacode.github.io/busan.jpg" 
+            alt="Busan seaside at dusk" class="hero-image">
 
             <div class="hero-overlay"></div>
 
@@ -132,6 +133,164 @@
     </div>
 
     <script src="app.js"></script>
+                    <!-- ========== from deepseek ==========-->
+<script>
+/* ============================================================
+   index 专用预加载（写死版）
+   - 打开 index 后后台加载 travel + journal 的全部图片
+   - 先小图（thumbs），全部完成后加载大图（large）
+   - 用户当前浏览到的卡片对应的页面，优先加载
+   - 标签页隐藏时暂停，切回继续
+   ============================================================ */
+(function () {
+  'use strict';
 
+  var THUMB_CONCURRENCY = 4;
+  var LARGE_CONCURRENCY = 2;
+
+  var CDN = 'https://cdn.osyb.cn/gh/nereacode/nereacode.github.io/assets/img/';
+
+  // ---------- 写死：travel 页的所有图片 ----------
+  var TRAVEL = [
+    'travel_img_5241.jpg','travel_img_9180.jpg','travel_img_2237.jpg','travel_img_2195.jpg',
+    'travel_img_5422.jpg','travel_fullsizerender.jpg','travel_img_9130.jpg','travel_img_9094.jpg',
+    'travel_img_9183.jpg','travel_img_8854.jpg','travel_img_8935.jpg','travel_img_8943.jpg',
+    'travel_img_9606.jpg','travel_img_9619.jpg','travel_img_9544.jpg','travel_img_9399.jpg',
+    'travel_img_9695.jpg','travel_img_9692.jpg','travel_img_9277.jpg','travel_img_9772.jpg',
+    'travel_img_1651.jpg','travel_img_1739.jpg','travel_img_4424.jpg','travel_img_4423.jpg',
+    'travel_img_2079.jpg','travel_img_2124.jpg','travel_img_1379.jpg',
+    'travel_img_5086.jpg','travel_img_6785.jpg','travel_img_7435.jpg','travel_img_8682.jpg',
+    'travel_14114166960c8425c492ee98.jpg','travel_img_9335.jpg','travel_img_6600.jpg',
+    'travel_img_0951.jpg','travel_img_9997.jpg','travel_img_6715.jpg','travel_img_6020.jpg',
+    'travel_img_5602.jpg'
+  ];
+
+  // ---------- 写死：journal 页的所有图片 ----------
+  var JOURNAL = [
+    'daily_img_0475.jpg','daily_img_7076.jpg','daily_img_4284.jpg','daily_img_1109.jpg',
+    'daily_img_0842.jpg','daily_99d2806d.jpg','daily_img_0524.jpg','daily_img_6478.jpg',
+    'daily_img_8084.jpg','daily_img_8117.jpg','daily_img_3328.jpg','daily_img_3850.jpg',
+    'daily_img_2516.jpg','daily_img_7772.jpg','daily_b9363dbd374fb3ccb9332baa.jpg',
+    'daily_img_5687.jpg','daily_img_0933.jpg','daily_img_0937.jpg',
+    'travel_img_6372.jpg','travel_img_6449.jpg','travel_img_4116.jpg','travel_img_4118.jpg',
+    'travel_img_0968.jpg','daily_img_0003.jpg',
+    'daily_img_6457.jpg','daily_img_8767.jpg','daily_img_7390.jpg',
+    'daily_30f43a48a3cfddddf3043dd3.jpg','daily_img_3863.jpg','daily_img_0445.jpg'
+  ];
+
+  // ---------- 拼成 URL，并标记归属 ----------
+  function build(list, page) {
+    return list.map(function (name) {
+      return {
+        page: page,
+        thumb: CDN + 'thumbs/' + name,
+        large: CDN + 'large/' + name
+      };
+    });
+  }
+
+  var ALL = build(TRAVEL, 'travel').concat(build(JOURNAL, 'journal'));
+
+  // ---------- 去重（travel/journal 有共用图） ----------
+  var seenT = {}, seenL = {};
+  var THUMBS = [], LARGES = [];
+  ALL.forEach(function (it) {
+    if (!seenT[it.thumb]) { seenT[it.thumb] = 1; THUMBS.push(it); }
+    if (!seenL[it.large]) { seenL[it.large] = 1; LARGES.push(it); }
+  });
+
+  // ---------- 判断用户当前更可能去哪个页面 ----------
+  // 看哪个入口卡片离视口中心最近
+  function getActivePage() {
+    var centerY = window.innerHeight / 2;
+    var best = null, bestDist = Infinity;
+    document.querySelectorAll('a.world-card').forEach(function (a) {
+      var href = a.getAttribute('href') || '';
+      var page = href.indexOf('travel') >= 0 ? 'travel'
+               : href.indexOf('journal') >= 0 ? 'journal'
+               : null;
+      if (!page) return;
+      var r = a.getBoundingClientRect();
+      var mid = (r.top + r.bottom) / 2;
+      var d = Math.abs(mid - centerY);
+      if (d < bestDist) { bestDist = d; best = page; }
+    });
+    return best;
+  }
+
+  // ---------- 队列：当前页面优先，其余按顺序 ----------
+  function buildQueue(list) {
+    var active = getActivePage();
+    if (!active) return list.slice();
+    var first = [], rest = [];
+    list.forEach(function (it) {
+      if (it.page === active) first.push(it); else rest.push(it);
+    });
+    return first.concat(rest);
+  }
+
+  // ---------- 并发加载器（可暂停） ----------
+  function makeLoader(concurrency, pick) {
+    var queue = [], idx = 0, active = 0, paused = false, onDone = null, finished = false;
+
+    function pump() {
+      if (paused) return;
+      while (active < concurrency && idx < queue.length) {
+        (function (item) {
+          active++;
+          var img = new Image();
+          img.decoding = 'async';
+          img.onload = img.onerror = function () {
+            active--;
+            idx++;
+            pump();
+            if (idx >= queue.length && active === 0 && onDone && !finished) {
+              finished = true;
+              onDone();
+            }
+          };
+          img.src = pick(item);
+        })(queue[idx]);
+      }
+    }
+
+    return {
+      start: function (list, done) {
+        queue = buildQueue(list);
+        idx = 0; active = 0; finished = false; onDone = done || null;
+        pump();
+      },
+      pause: function () { paused = true; },
+      resume: function () { if (paused) { paused = false; pump(); } }
+    };
+  }
+
+  var thumbLoader = makeLoader(THUMB_CONCURRENCY, function (it) { return it.thumb; });
+  var largeLoader = makeLoader(LARGE_CONCURRENCY, function (it) { return it.large; });
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { thumbLoader.pause(); largeLoader.pause(); }
+    else { thumbLoader.resume(); largeLoader.resume(); }
+  });
+
+  // ---------- 启动 ----------
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var start = function () {
+        // 先小图，全部完成后再大图
+        thumbLoader.start(THUMBS, function () {
+          largeLoader.start(LARGES, null);
+        });
+      };
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(start, { timeout: 2000 });
+      } else {
+        start();
+      }
+    }, 800);
+  });
+})();
+</script>
+                   <!--  ========== from deepseek ========== -->
 </body>
 </html>
