@@ -191,3 +191,13 @@ document.querySelectorAll(".map-stop").forEach(function (stop) {
         if (target) { target.scrollIntoView({ behavior: "smooth", block: "start" }); }
     });
 });
+
+
+/* 自动把 data-place 放到胶带上 */
+document.querySelectorAll('.polaroid[data-place]').forEach(function (fig) {
+    if (fig.querySelector('.tape-label')) return;
+    var span = document.createElement('span');
+    span.className = 'tape-label';
+    span.textContent = fig.getAttribute('data-place');
+    fig.insertBefore(span, fig.firstChild);
+});

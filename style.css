@@ -953,3 +953,37 @@ footer {
     width: 100%;
     aspect-ratio: 1 / 1;
 }
+
+/* ===== 胶带上的地点文字 ===== */
+.polaroid { position: relative; }
+
+.tape-label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    z-index: 3;
+    font-family: "Caveat", "Comic Sans MS", cursive;
+    font-size: 14px;
+    color: #6b6355;
+    letter-spacing: .5px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* 默认：横图 */
+.tape-label {
+    top: -12px;
+}
+
+/* 竖图（已有的 tall 类）：微调 */
+.polaroid.tall .tape-label {
+    top: -12px;
+}
+
+/* 各色胶带对应文字颜色（可选） */
+.tape-sakura .tape-label { color: #b06a78; }
+.tape-sun    .tape-label { color: #a8842e; }
+.tape-matcha .tape-label { color: #5e7a4e; }
+.tape-sky    .tape-label { color: #4e7a92; }
+.tape-clay   .tape-label { color: #a35b38; }
+
