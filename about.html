@@ -159,6 +159,148 @@
   const age = new Date().getFullYear() - birthYear - 1;
   document.getElementById("age").textContent = age;
 </script>
+                  <!--  ========== from deepseek ========== -->
+<script>
+/* ============================================================
+   页内预加载（最终版）
+   - 小图 + 大图同时开始，大图并发低不抢带宽
+   - 启动时按当前章节排序，滚动时动态提前
+   - 标签页隐藏暂停
+   - URL 与 app.js 的 lightbox 完全一致，确保命中缓存
+   ============================================================ */
+(function () {
+  'use strict';
 
+  var THUMB_CONCURRENCY = 4;
+  var LARGE_CONCURRENCY = 2;
+
+  // ---------- 收集页面上所有图 ----------
+  function collect() {
+    var thumbs = [], larges = [];
+    var seenT = {}, seenL = {};
+    document.querySelectorAll('figure.polaroid').forEach(function (fig) {
+      var sec = fig.closest('section');
+      var secId = sec ? (sec.id || sec.className) : '';
+      var img = fig.querySelector('img');
+      if (img && img.getAttribute('src')) {
+        var t = img.getAttribute('src');
+        if (!seenT[t]) { seenT[t] = 1; thumbs.push({ url: t, section: secId }); }
+      }
+      var full = fig.getAttribute('data-full');
+      if (full && !seenL[full]) {
+        seenL[full] = 1;
+        larges.push({ url: full, section: secId });
+      }
+    });
+    return { thumbs: thumbs, larges: larges };
+  }
+
+  // ---------- 当前视口中心所在 section ----------
+  function getActiveSection() {
+    var centerY = window.innerHeight / 2;
+    var best = null, bestDist = Infinity;
+    document.querySelectorAll('section').forEach(function (sec) {
+      var r = sec.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      var mid = (r.top + r.bottom) / 2;
+      var d = Math.abs(mid - centerY);
+      if (d < bestDist) { bestDist = d; best = sec.id || sec.className; }
+    });
+    return best;
+  }
+
+  // ---------- 并发加载器（可暂停、可重排） ----------
+  function makeLoader(concurrency) {
+    var queue = [], idx = 0, active = 0, paused = false, onDone = null, finished = false, done = false;
+
+    function pump() {
+      if (paused) return;
+      while (active < concurrency && idx < queue.length) {
+        (function (item) {
+          active++;
+          var img = new Image();
+          img.decoding = 'async';
+          img.onload = img.onerror = function () {
+            active--;
+            idx++;
+            pump();
+            if (idx >= queue.length && active === 0 && onDone && !finished) {
+              finished = true; done = true; onDone();
+            }
+          };
+          img.src = item.url;   // ← 与 app.js lightbox 完全一致的 URL
+        })(queue[idx]);
+      }
+    }
+
+    return {
+      start: function (list, cb) {
+        queue = list.slice();
+        idx = 0; active = 0; finished = false; done = false;
+        onDone = cb || null;
+        pump();
+      },
+      prioritize: function (list, activeSec) {
+        if (!activeSec) return;
+        var first = [], rest = [];
+        list.forEach(function (it) {
+          if (it.section === activeSec) first.push(it); else rest.push(it);
+        });
+        var newQueue = first.concat(rest);
+        var doneUrls = {};
+        queue.slice(0, idx).forEach(function (it) { doneUrls[it.url] = 1; });
+        queue = queue.slice(0, idx).concat(newQueue.filter(function (it) { return !doneUrls[it.url]; }));
+      },
+      pause:  function () { paused = true; },
+      resume: function () { if (paused) { paused = false; pump(); } },
+      isDone: function () { return done; }
+    };
+  }
+
+  var thumbLoader = makeLoader(THUMB_CONCURRENCY);
+  var largeLoader = makeLoader(LARGE_CONCURRENCY);
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { thumbLoader.pause(); largeLoader.pause(); }
+    else { thumbLoader.resume(); largeLoader.resume(); }
+  });
+
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var data = collect();
+
+      // 启动时按当前章节排好序
+      var active = getActiveSection();
+      function sortBy(list) {
+        if (!active) return list.slice();
+        var first = [], rest = [];
+        list.forEach(function (it) {
+          if (it.section === active) first.push(it); else rest.push(it);
+        });
+        return first.concat(rest);
+      }
+
+      // 关键：小图和大图同时开始，不再等
+      thumbLoader.start(sortBy(data.thumbs), null);
+      largeLoader.start(sortBy(data.larges), null);
+
+      // 滚动时动态提前当前章节
+      var t = null;
+      window.addEventListener('scroll', function () {
+        if (t) return;
+        t = setTimeout(function () {
+          t = null;
+          var a = getActiveSection();
+          if (!a) return;
+          if (!thumbLoader.isDone()) thumbLoader.prioritize(data.thumbs, a);
+          if (!largeLoader.isDone()) largeLoader.prioritize(data.larges, a);
+        }, 250);
+      }, { passive: true });
+
+    }, 300);
+  });
+})();
+</script>
+                   <!--  ========== from deepseek ========== -->
 </body>
 </html>
