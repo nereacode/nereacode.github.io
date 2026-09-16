@@ -58,15 +58,20 @@
 <section class="about-grid">
     <div class="reveal">
         <p class="about-intro">
-            I'm <strong>24</strong> — an engineer by weekday and a journal-keeper by night. 
-            I spent three years designing factories on screens; 
+            I'm <strong id="age">24</strong> — an engineer by weekday and a journal-keeper by night. 
+            I spent three years designing factories on screens👩‍💻; 
             now I'm in a gap season, learning both front-end and back-end code.
         </p>
         <p class="about-intro">
             I love <strong>live concerts</strong>, <strong>city walks</strong> and the small beauties of everyday life.
-             I love the calm that <strong>painting</strong> and <strong>cats</strong> bring me,
+             I love the calm that <strong>painting</strong> and <strong>cats🐱</strong> bring me,
               and I also love <strong>Japanese anime</strong> and <strong>games</strong>. 
-              This website is full of my memories — please wander slowly.
+              This website is full of my memories — please wander slowly☺️.
+        </p>
+                <p class="about-intro">
+            Building something interesting?<br>
+            Want to talk about design, code, travel or anything in between?<br>
+            Feel free to contact me ~ my email is <strong>nerea.dong@gmail.com</strong>🫶
         </p>
         <div class="likes">
             <span>🎤 live concerts</span>
@@ -148,6 +153,12 @@
     </div>
 
     <script src="app.js"></script>
+        <!-- 按照年龄增加 -->
+<script>
+  const birthYear = 2001;
+  const age = new Date().getFullYear() - birthYear - 1;
+  document.getElementById("age").textContent = age;
+</script>
 
 </body>
 </html>
