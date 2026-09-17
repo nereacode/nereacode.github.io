@@ -130,8 +130,13 @@ img { max-width: 100%; display: block; }
 }
 .top-right { text-align: right; color: #2b70df; text-shadow: 0 1px 8px rgba(30,40,50,.55); }
 .top-bar.solid .top-right { color: var(--ink-soft); text-shadow: none; }
+/* ---------- 强制日期时间同一行---------- */
+.date, .time {    display: inline-block; }
+.place {    display: block;}
+
 .date { font-family: 'Caveat'; font-size: 22px; line-height: 1.2; }
 .time { font-family: 'Caveat';  font-size: 22px; line-height: 1.2; }
+.place { font-family: 'Caveat';  font-size: 22px; line-height: 1.2; }
 .back {
     font-family: var(--hand);
     font-size: 18px;
